@@ -164,19 +164,24 @@ public class MainActivity extends AppCompatActivity {
 </LinearLayout>
 ```
 ### 2.2 测试Log
-1. 运行程序：
+1. 运行程序：  
+
 ![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_create.png)  
 
-2. 切换到其他应用：
-![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_stop.png)  
+2. 切换到其他应用：  
 
-3. 切换回本应用：
+![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_stop.jpeg)  
+
+3. 切换回本应用：  
+
 ![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_restart.png)  
 
-4. 退出应用：
+4. 退出应用：  
+
 ![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_destroy.png)  
 
-5. 横竖屏切换：
+5. 横竖屏切换：  
+
 ![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/save_restore_instance_state.png)  
 
 ## 三、总结
@@ -190,15 +195,22 @@ public class MainActivity extends AppCompatActivity {
 当系统配置发生变化时，activity会被杀死，即调用onPause、onStop、onDestroy方法，同时会调用onSavedInstanceState方法来保存activity的状态，这个方法调用是在onStop之前，与onPause没有既定的时序关系。这个方法只有在activity被异常终止的时候才会调用，正常情况是不会调用的。当activity重新创建时，系统会调用onRestoreInstanceState，并把activity销毁时onSavedInstanceState保存的Bundle对象传递给onRestoreInstanceState和onCreate方法。因此我们可以通过这两个方法来判断activity是否被重建，从时序来说，onCreate应该在onRestoreInstanceState之前执行。
 #### 4.1.2 View执行过程
 这里说一下这个onSavedInstanceState和onRestoreInstanceState方法。这玩意不仅存在activity中，也存在于各个view中。Activity中的这两个方法恢复的是activity的视图结构，而对应的数据恢复在对应的view中，比如TextView
-关于保存和恢复view层次结构，系统的工作流程是这样的：
-① 首先activity被意外终止时，activity会调用onSavedInstanceState方法去保存数据
-② Activity会委托window去保存数据，接着window再委托他上面的顶级容器去保存数据。（顶层容器是一个viewgroup，一般来说她很可能是decorview）
-③ 最后由顶层容器再去一一通知他的子元素来保存数据。
+关于保存和恢复view层次结构，系统的工作流程是这样的：  
+
+① 首先activity被意外终止时，activity会调用onSavedInstanceState方法去保存数据  
+
+② Activity会委托window去保存数据，接着window再委托他上面的顶级容器去保存数据。（顶层容器是一个viewgroup，一般来说她很可能是decorview）  
+
+③ 最后由顶层容器再去一一通知他的子元素来保存数据。  
+
 ### 4.2 资源内存不足导致低优先级的activity被杀死
 #### 4.2.1 优先级
-① 前台activity：与用户交互的activity，优先级最高
-② 可见但非前台的activity：比如activity出现了一个弹窗，导致activity可见但位于后台不能进行交互
-③ 后台activity：已经被暂停的activity，比如执行了onStop方法，优先级最低
+① 前台activity：与用户交互的activity，优先级最高  
+
+② 可见但非前台的activity：比如activity出现了一个弹窗，导致activity可见但位于后台不能进行交互  
+
+③ 后台activity：已经被暂停的activity，比如执行了onStop方法，优先级最低  
+
 参考：[Activity生命周期（异常情况）](https://blog.csdn.net/weixin_38703938/article/details/81233928)
   
   
