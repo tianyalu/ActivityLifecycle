@@ -7,7 +7,7 @@ Activity的生命周期中有7个方法，Fragment生命周期中有11个方法
 
 ### 1.2 Activity和Fragment生命周期对比
 Activity生命周期中除了以下6个方法外还有一个onRestart()方法，该方法在该Activity从不可见（仍存在）到重新可见时调用
-![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/activity_fragment_lifecycle.png)
+![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/activity_fragment_lifecycle.jpeg)
 
 ## 二、测试代码及日志输出
 ### 2.1 测试代码
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
 2. 切换到其他应用：  
 
-![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_stop.jpeg)  
+![image](https://github.com/tianyalu/ActivityLifecycle/blob/master/show/on_stop.png)  
 
 3. 切换回本应用：  
 
